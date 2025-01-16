@@ -1,22 +1,24 @@
+import { useParams } from "react-router-dom";
 import { getSession } from "../api";
 
 export default function Session() {
-  // Replace the placeholder catId and sessionId variables with a React Router Hook
-  const catId = "3d-printing-and-design";
-  const sessionId = "3d-printing-metal";
+  // !! Replace the placeholder catId and sessionId variables with a React Router Hook
+  // const catId = "3d-printing-and-design";
+  // const sessionId = "3d-printing-metal";
 
-  const { name, desc, speaker } = getSession({ catId, sessionId });
+  const {moduleId, sessionId} = useParams()
+
+  const { name, desc, speaker } = getSession({ moduleId, sessionId });
 
   return (
     <>
       <h3>{name}</h3>
       <p>{desc}</p>
 
-      <h4>{speaker.name}</h4>
+      <h4>Lecturer</h4>
       <span>
-        {speaker.title} at {speaker.org}
+        {speaker.name}
       </span>
-      <p>{speaker.bio}</p>
     </>
   );
 }
